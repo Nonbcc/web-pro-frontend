@@ -53,25 +53,25 @@ export default function ProfileScreen() {
             {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
             {successUpdate && <MessageBox variant="success">
               Profile Updated Successfully</MessageBox>}
-              <div>
+              <div className='shipping_input'>
                   <label htmlFor='name'>Name</label>
                   <input id="name" type="text" placeholder="Enter name" defaultValue={name} onChange={(e) => setName(e.target.value)}></input>
               </div>
-              <div>
+              <div className='shipping_input'>
                   <label htmlFor='email'>Email</label>
                   <input id="email" type="email" placeholder="Enter email" defaultValue={email} onChange={(e) => setEmail(e.target.value)}></input>
               </div>
-              <div>
+              <div className='shipping_input'>
                   <label htmlFor='password'>Password</label>
                   <input id="password" type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}></input>
               </div>
-              <div>
+              <div className='shipping_input'>
                   <label htmlFor='confirmPassword'>Confirm Password</label>
                   <input id="confirmPassword" type="password" placeholder="Enter confirm password" onChange={(e) => setConfirmPassword(e.target.value)}></input>
               </div>
               <div>
                   <label/>
-                  <button className='primary' type='submit'>Update</button>
+                  <button className='profile_button' type='submit'>Update</button>
               </div>
             </>
         }

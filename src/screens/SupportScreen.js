@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import io from "socket.io-client";
 import { useSelector } from 'react-redux';
-import MessageBox from '../components/MessageBox'
+import MessageBox from '../components/MessageBox';
+import SendIcon from '@mui/icons-material/Send';
 
 let allUsers = [];
 let allMessages = [];
@@ -106,45 +107,53 @@ export default function SupportScreen() {
   }
 
   return (
-    <div>
-      <div>
-          {users.filter((x) => x._id !== userInfo._id).length === 0 && (
-              <MessageBox>No Online User Found</MessageBox>
-          )}
-          <ul>
-              {users.filter((x) => x._id !== userInfo._id).map((user) =>(
-                  <li key={user._id} className={user._id === selectedUser._id ? '  selected' : '  '}>
-                      <button className='block' type='button' onClick={() => selectUser(user)}>{user.name}</button>
-                      <span className={user.unread ? 'unread' : user.online ? 'online' : 'offline'}/>
-                  </li>
-              ))}
-          </ul>
-      </div>
-      <div className='col-3 support-messages'>
-          {!selectedUser._id ? (
-            <MessageBox>Select a user to start chat</MessageBox>
-          ) : (
-              <div>
-                  <div className='row'>
-                      <strong>Chat with {selectedUser.name} </strong>
-                  </div>
-                  <ul ref={uiMessagesRef}>
-                      {messages.length === 0 && <li>No message.</li>}
-                      {messages.map((msg, index) =>(
-                          <li key={index}>
-                              <strong>{`${msg.name}: `}</strong> {msg.body}
-                          </li>
-                      ))}
-                  </ul>
-                  <div>
-                      <form onSubmit={submitHandler} className="row">
-                          <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)} type='text' placeholder='type message'/>
-                          <button type='submit'>Send</button>
-                      </form>
-                  </div>
-              </div>
-          )}
-      </div>
-    </div>
+    <div className="wrapper-1">
+                <div className="product-img">
+                <div>
+                    {users.filter((x) => x._id !== userInfo._id).length === 0 && (
+                        <MessageBox>No Online User Found</MessageBox>
+                    )}
+                    <ul className='userOnline-list'>
+                        <h2 className='userOnline-list-head'>Online users</h2>
+                        {users.filter((x) => x._id !== userInfo._id).map((user) =>(
+                            <li key={user._id} className={user._id === selectedUser._id ? '  selected' : '  '}>
+                                <button className='name_button' type='button' onClick={() => selectUser(user)}>{user.name}</button>
+                                <span className={user.unread ? 'unread' : user.online ? 'online' : 'offline'}/>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                </div>
+                <div className="product-info-1">
+                <div className="product-text">
+                <div className='support-msg'>
+                    {!selectedUser._id ? (
+                    <MessageBox>Select a user to start chat</MessageBox>
+                    ) : (
+                        <div>
+                            <div className='row'>
+                                <strong>Chat with {selectedUser.name} </strong>
+                            </div>
+                            <ul ref={uiMessagesRef}>
+                                {messages.length === 0 && <li>No message.</li>}
+                                {messages.map((msg, index) =>(
+                                    <li key={index}>
+                                        <strong>{`${msg.name}: `}</strong> {msg.body}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div>
+                                <form onSubmit={submitHandler} className="row">
+                                    <input className='chat-text' value={messageBody} onChange={(e) => setMessageBody(e.target.value)} type='text' placeholder='type message'/>
+                                    <button className='chat-button' type='submit'>Send<SendIcon className='send_icon-1'/></button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                </div>
+                
+                </div>
+            </div>
   )
 }

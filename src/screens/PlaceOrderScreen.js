@@ -50,7 +50,7 @@ export default function PlaceOrderScreen(props) {
                                             <Link className=' order_color' to={`/product/${item.product}`}>{item.name}</Link>
                                         </div>
                                         
-                                        <div className='order_price'>{item.qty} x ${item.price.toFixed(2)} = ${(item.qty * item.price).toFixed(2)}</div>
+                                        <div className='order_price'>${item.price.toFixed(2)} x{item.qty} = ${(item.qty * item.price).toFixed(2)}</div>
                                         
                                     </div>
                                 </li>

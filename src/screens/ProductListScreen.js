@@ -67,7 +67,7 @@ export default function ProductListScreen(props) {
                       <td>{product._id}</td>
                       <td>{product.name}</td>
                       <td>{product.botanical_name}</td>
-                      <td>{product.price.toFixed(2)}</td>
+                      <td>${product.price.toFixed(2)}</td>
                       <td>{product.category}</td>
                       <td>
                           <button type='button' className='productList_button'

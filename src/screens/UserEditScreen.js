@@ -47,16 +47,16 @@ export default function UserEditScreen(props) {
           error? <MessageBox variant='danger'>{error}</MessageBox>
           :
           <>
-          <div>
+          <div className='shipping_input'>
               <label htmlFor='name'>Name</label>
               <input id='name' type='text' placeholder='Enter name' value={name} onChange={(e) =>setName(e.target.value)}></input>
           </div>
-          <div>
+          <div className='shipping_input'>
               <label htmlFor='email'>Email</label>
               <input id='email' type='email' placeholder='Enter email' value={email} onChange={(e) =>setEmail(e.target.value)}></input>
           </div>
           <div>
-              <button type='submit' className='primary'>
+              <button type='submit' className='update_button'>
                   Update
               </button>
           </div>

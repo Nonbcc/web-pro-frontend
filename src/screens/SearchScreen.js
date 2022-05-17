@@ -30,8 +30,8 @@ export default function SearchScreen(props) {
         return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/order/${sortOrder}`;
     }
   return (
-  <div>
-    <div className='row'>
+  <div className='filter'>
+    <div className='row-sort'>
         {loading? (<LoadingBox></LoadingBox>)
         :
             error? (<MessageBox variant='danger'>{error}</MessageBox>)
@@ -39,11 +39,10 @@ export default function SearchScreen(props) {
         <div>{products.length} Results</div>
         }
         <div>
-            Sort by: { ' '}
-            <select value={order} onChange={e => {props.history.push(getFilterUrl({order: e.target.value}))}}>
-                <option value='newest'>Newest</option>
-                <option value='lowest'>Low to high</option>
-                <option value='highest'>High to low</option>
+            <select className='custom-select' value={order} onChange={e => {props.history.push(getFilterUrl({order: e.target.value}))}}>
+                <option value='newest'>Sort by: Newest</option>
+                <option value='lowest'>Sort by: Low to high</option>
+                <option value='highest'>Sort by: High to low</option>
             </select>
         </div>
     </div>
@@ -83,7 +82,7 @@ export default function SearchScreen(props) {
                 </ul>
             </div>
         </div>
-        <div className='col-3'>
+        <div className='col-3-sort'>
         {loading? (<LoadingBox></LoadingBox>)
         :
             error? (<MessageBox variant='danger'>{error}</MessageBox>)

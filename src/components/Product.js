@@ -13,7 +13,7 @@ export default function Product(props) {
                             <h2 className='card_name'>{product.name}</h2>
                         </Link>
                         <div className="botanical_name">
-                            {product.botanical_name}
+                            {product.botanical_name.toUpperCase()}
                         </div>
                         <div className="price">${product.price.toFixed(2)}</div>
                     </div>

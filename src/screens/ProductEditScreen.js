@@ -17,8 +17,7 @@ export default function ProductEditScreen(props) {
     const [description, setDescription] = useState('');
     const [image_url, setImage_url] = useState('');
     const [image_file, setImage_file] = useState('');
-    const [additional_images, setAdditional_images] = useState('');
-
+    
     const productDetails = useSelector(state => state.productDetails);
     const {loading, error, products} = productDetails;
 
@@ -43,14 +42,13 @@ export default function ProductEditScreen(props) {
             setDescription(products.description);
             setImage_url(products.image_url);
             setImage_file(products.image_file);
-            setAdditional_images(products.additional_images);
         }
     }, [products, dispatch, productId, props.history, successUpdate]);
   const submitHandler = (e) => {
       e.preventDefault();
       // TODO: dispatch update product
       dispatch(updateProduct({_id: productId,
-    name, price, nickname, botanical_name, category, count_in_stock, description, image_url, image_file, additional_images}))
+    name, price, nickname, botanical_name, category, count_in_stock, description, image_url, image_file}))
   }
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState('');
@@ -89,67 +87,61 @@ export default function ProductEditScreen(props) {
           error? <MessageBox variant='danger'>{error}</MessageBox>
           :
           <>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='name'>Name</label>
                 <input id='name' type='text' placeholder='Enter name' value={name}
                 onChange={(e) => setName(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='price'>Price</label>
                 <input id='price' type='text' placeholder='Enter price' value={price}
                 onChange={(e) => setPrice(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='nickname'>Nickname</label>
                 <input id='nickname' type='text' placeholder='Enter nickname' value={nickname}
                 onChange={(e) => setNickname(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='botanical_name'>Botanical_name</label>
                 <input id='botanical_name' type='text' placeholder='Enter botanical_name' value={botanical_name}
                 onChange={(e) => setBotanical_name(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='category'>Category</label>
                 <input id='category' type='text' placeholder='Enter category' value={category}
                 onChange={(e) => setCategory(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='count_in_stock'>Count_in_stock</label>
                 <input id='count_in_stock' type='text' placeholder='Enter count_in_stock' value={count_in_stock}
                 onChange={(e) => setCount_in_stock(e.target.value)}></input>
             </div>
-            <div>
+            <div className='shipping_input'>
                 <label htmlFor='description'>Description</label>
                 <textarea id='description' rows='3' type='text' placeholder='Enter description' value={description}
                 onChange={(e) => setDescription(e.target.value)}></textarea>
             </div>
-            <div>
-                <label htmlFor='image_url'>Image_url</label>
+            <div className='shipping_input'>
+                <label htmlFor='image_url'>Image url</label>
                 <input id='image_url' type='text' placeholder='Enter image_url' value={image_url}
                 onChange={(e) => setImage_url(e.target.value)}></input>
             </div>
-            <div>
-                <label htmlFor='image_file'>Image_file</label>
+            <div className='shipping_input'>
+                <label htmlFor='image_file'>Image file</label>
                 <input id='image_file' type='text' placeholder='Enter image_file' value={image_file}
                 onChange={(e) => setImage_file(e.target.value)}></input>
-
             </div>
-            <div>
-                <label htmlFor='imageFile'>Image File</label>
+            <div className='shipping_input'>
+                <label htmlFor='imageFile'>Choose image file</label>
                 <input type="file" id='imageFile' label='Choose Image'
                 onChange={uploadFileHandler}></input>
                 {loadingUpload && <LoadingBox></LoadingBox>}
                 {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
             </div>
             <div>
-                <label htmlFor='additional_images'>Additional_images</label>
-                <input id='additional_images' type='text' placeholder='Enter additional_images' value={additional_images}
-                onChange={(e) => setAdditional_images(e.target.value)}></input>
-            </div>
-            <div>
                 <label></label>
-                <button className='primary' type='submit'>
+                <button className='update_button' type='submit'>
                     Update
                 </button>
             </div>
