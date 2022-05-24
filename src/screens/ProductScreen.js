@@ -64,7 +64,11 @@ export default function ProductScreen(props) {
                                     </>
                                     
                                 )}</span>
-                        <button onClick={addToCartHandler}>Add to bag</button>
+                        <div>
+                            {products.count_in_stock > 0 ? (
+                                <button onClick={addToCartHandler}>Add to bag</button>
+                            ) : null}
+                        </div>
                     </div>
                 </div>
                 
